@@ -2,7 +2,6 @@ import React from "react";
 import { createClient } from "pexels"
 
 const pexelsAPI = import.meta.env.VITE_APP_PEXELS_API_KEY
-console.log(pexelsAPI)
 const client = createClient(`${pexelsAPI}`)
 
 
