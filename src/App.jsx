@@ -2,7 +2,6 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiceFive } from "@fortawesome/free-solid-svg-icons/faDiceFive"; 
 
-import Photo from "/src/component/photo.jsx"
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -12,7 +11,13 @@ const supabase = createClient("https://whaftqpyevfgxqxdfixi.supabase.co", `${sup
 export default function App() {
     const [selectedPrompt, setSelectedPrompt] = React.useState({
         id: 1,
-        prompts: "Overgrown Ruins"
+        prompts: "Overgrown Ruins",
+        photoURL: "https://images.pexels.com/photos/13074007/pexels-photo-13074007.jpeg",
+        photoAlt:"Ruins of a Castle in a Jungle Overgrown with Bushes",
+        photographer: "Yusron El Jihan",
+        photographerURL: "https://www.pexels.com/@yusronell/"
+
+
     })
 
     const [prompt, setPrompts] = React.useState([])
@@ -31,12 +36,14 @@ export default function App() {
 
     function getRandomPrompt() {
         let value = Math.floor(Math.random() * (prompt.length - 1) + 1);
-        const promptNote = prompt[value].prompts
         setSelectedPrompt(prevData => ({
             ...prevData,
             id: value,
-            prompts: promptNote
-
+            prompts: prompt[value].prompts,
+            photoURL: prompt[value].photoURL,
+            photoAlt: prompt[value].photoAlt,
+            photographer: prompt[value].photographer,
+            photographerURL:prompt[value].photographerURL
         }))
     }
 
@@ -45,7 +52,9 @@ export default function App() {
             <div className="col card">
                 <h3 className="card__promptNumber">Drawing Prompt #{selectedPrompt.id}</h3>
                 <h2 className="card__promptWord">{selectedPrompt.prompts}</h2>
-                <Photo queryWord={selectedPrompt.prompts} />
+                <img src={selectedPrompt.photoURL} alt={selectedPrompt.photoAlt} />
+                <h2 className="card__photographer">Photo by {selectedPrompt.photographer} on Pexels</h2>
+                <a href={selectedPrompt.photographerURL}>View {selectedPrompt.photographer}'s profile here</a>
                 <button onClick={getRandomPrompt} aria-label="Generate new prompt"><FontAwesomeIcon icon={faDiceFive} /></button>
             </div>
 
