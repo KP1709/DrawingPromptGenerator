@@ -54,6 +54,8 @@ body {
         margin-top: -10px;
         width: 90%;
         object-fit: contain;
+        border: 5px solid var(--clr-dark-blue);
+        border-radius: 10px;
     }
 
     a {
