@@ -78,6 +78,8 @@ body {
         /* For the font awesome icon */
         font-size: 30px; 
         color: var(--clr-light-dark-blue);
+
+        cursor: pointer;
     }
 
     .card__photographer {
