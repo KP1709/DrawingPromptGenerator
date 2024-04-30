@@ -10,7 +10,7 @@ const supabase = createClient("https://whaftqpyevfgxqxdfixi.supabase.co", `${sup
 
 export default function App() {
     const [selectedPrompt, setSelectedPrompt] = React.useState({
-        id: 1,
+        id: 27,
         prompts: "Overgrown Ruins",
         photoURL: "https://images.pexels.com/photos/13074007/pexels-photo-13074007.jpeg",
         photoAlt:"Ruins of a Castle in a Jungle Overgrown with Bushes",
