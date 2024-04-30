@@ -35,9 +35,7 @@ body {
     border-radius: 20px;
     align-items: center;
     justify-content: center;
-}
 
-.card {
     h2 {
         color: var(--clr-light-grey-blue);
         align-self: center;
@@ -70,20 +68,22 @@ body {
         width: var(--size);
         height: var(--size);
         position: relative;
-        bottom:  -10px;
+        bottom: -10px;
         border: transparent;
         border-radius: 50%;
         background-color: var(--clr-bright-green);
-        font-size: 30px;
+        
+        /* For the font awesome icon */
+        font-size: 30px; 
         color: var(--clr-light-dark-blue);
     }
 
-    .card__photographer{
+    .card__photographer {
         font-weight: 400;
         font-size: 1rem;
     }
 
-    .card__promptWord{
+    .card__promptWord {
         font-size: 1.75rem;
         margin-top: 5px;
     }
