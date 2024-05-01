@@ -1,41 +1,36 @@
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiceFive } from "@fortawesome/free-solid-svg-icons/faDiceFive"; 
+import { faDiceFive } from "@fortawesome/free-solid-svg-icons/faDiceFive";
 
 
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 
-const supabaseKey = import.meta.env.VITE_APP_SUPABASE_API_KEY 
-const supabase = createClient("https://whaftqpyevfgxqxdfixi.supabase.co", `${supabaseKey}`);
+// const supabaseKey = import.meta.env.VITE_APP_SUPABASE_API_KEY 
+// const supabase = createClient("https://whaftqpyevfgxqxdfixi.supabase.co", `${supabaseKey}`);
 
 export default function App() {
+    const [prompt, setPrompts] = React.useState([])
+    
     const [selectedPrompt, setSelectedPrompt] = React.useState({
         id: 27,
         prompts: "Overgrown Ruins",
         photoURL: "https://images.pexels.com/photos/13074007/pexels-photo-13074007.jpeg",
-        photoAlt:"Ruins of a Castle in a Jungle Overgrown with Bushes",
+        photoAlt: "Ruins of a Castle in a Jungle Overgrown with Bushes",
         photographer: "Yusron El Jihan",
         photographerURL: "https://www.pexels.com/@yusronell/"
-
-
     })
 
-    const [prompt, setPrompts] = React.useState([])
-
-    async function getPrompt() {
-        let { data } = await supabase
-            .from('DrawingPrompts')
-            .select('*')
-        console.log(data)
-        setPrompts(data)
-    }
-
     React.useEffect(() => {
+        async function getPrompt() {
+            const res = await fetch("/.netlify/functions/supabase")
+            const data = await res.json()
+            setPrompts(data.data)
+        }
         getPrompt()
     }, [])
 
     function getRandomPrompt() {
-        let value = Math.floor(Math.random() * (prompt.length - 1) + 1);
+        let value = Math.ceil(Math.random() * prompt.length);
         setSelectedPrompt(prevData => ({
             ...prevData,
             id: value,
@@ -43,7 +38,7 @@ export default function App() {
             photoURL: prompt[value].photoURL,
             photoAlt: prompt[value].photoAlt,
             photographer: prompt[value].photographer,
-            photographerURL:prompt[value].photographerURL
+            photographerURL: prompt[value].photographerURL
         }))
     }
 
