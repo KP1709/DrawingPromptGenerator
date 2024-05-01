@@ -4,13 +4,11 @@ const {
     VITE_APP_SUPABASE_API_KEY
 } = process.env;
 
-// Connect to our database 
+// Connect to Supabase
 import { createClient } from "@supabase/supabase-js";
-
-// const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient("https://whaftqpyevfgxqxdfixi.supabase.co", VITE_APP_SUPABASE_API_KEY);
 
-// Our standard serverless handler function
+// Serverless function
 export default async event => {
 
   let { data, error } = await supabase

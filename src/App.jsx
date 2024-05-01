@@ -2,12 +2,6 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiceFive } from "@fortawesome/free-solid-svg-icons/faDiceFive";
 
-
-// import { createClient } from "@supabase/supabase-js";
-
-// const supabaseKey = import.meta.env.VITE_APP_SUPABASE_API_KEY 
-// const supabase = createClient("https://whaftqpyevfgxqxdfixi.supabase.co", `${supabaseKey}`);
-
 export default function App() {
     const [prompt, setPrompts] = React.useState([])
     
