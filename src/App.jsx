@@ -24,7 +24,7 @@ export default function App() {
     }, [])
 
     function getRandomPrompt() {
-        let value = Math.ceil(Math.random() * prompt.length);
+        let value = Math.ceil(Math.random() * prompt.length - 1);
         setSelectedPrompt(prevData => ({
             ...prevData,
             id: value,
