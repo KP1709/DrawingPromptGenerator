@@ -29,7 +29,7 @@ body {
 
 .card {
     position: relative;
-    padding: 20px 30px;
+    padding: 20px;
     max-width: 550px;
     background-color: var(--clr-light-dark-blue);
     border-radius: 20px;
@@ -54,6 +54,8 @@ body {
         margin-top: -10px;
         width: 90%;
         object-fit: contain;
+        border: 5px solid var(--clr-dark-blue);
+        border-radius: 10px;
     }
 
     a {
@@ -90,13 +92,4 @@ body {
         margin-top: 5px;
     }
 
-}
-
-@media (min-width: 700px){
-    .card{
-        img{
-            height: 325px;
-            width: 475px;
-        }
-    }
 }
