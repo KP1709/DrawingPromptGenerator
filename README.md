@@ -16,7 +16,15 @@ The API keys were hidden in a .env file and Netlify serverless functions were us
 
 The repo contains two folders 'netlify/functions' and '/functions'. 
 - 'netlify/functions' - used for production purposes
-- '/functions' - used for deployment purposes  
+- '/functions' - used for deployment purposes 
+
+## 🛠️ Features
+- Accessibility integrated into the 'generate new prompt' (dice) button using aria-label.
+- The prompt word and images are retrieved from the database.
+- Images shown are set to be landscape only.
+- The photographer's image is displayed on the card with alt text added to the image.
+- Users can view the photographer's Pexel account.
+- The API keys are hidden correctly using the .env file and added to the .gitignore file. 
 
 ## 🎨 Design + Functionality
 The design and functionality were inspired by a similar project on Frontend Mentor (Advice Generator App). The design was adapted to suit the addition of other elements such as the photo, photographer's name and link to their account. 
@@ -31,14 +39,6 @@ Link to Frontend Mentor challenge - https://www.frontendmentor.io/challenges/adv
  - Netlify and Supabase integration - https://www.netlify.com/integrations/supabase/
  - Hiding API keys using Netlify - https://www.youtube.com/watch?v=m2Dr4L_Ab14
  - Hiding API keys in Vite - https://devzibah.hashnode.dev/using-a-dotenv-file-to-store-and-use-api-keys-in-a-vite-built-react-app
-
-## 🛠️ Features
-- Accessibility integrated into the 'generate new prompt' (dice) button using aria-label.
-- The prompt word and images are retrieved from the database.
-- Images shown are set to be landscape only.
-- The photographer's image is displayed on the card with alt text added to the image.
-- Users can view the photographer's Pexel account.
-- The API keys are hidden correctly using the .env file and added to the .gitignore file. 
 
 ## ➕ Potential features to add 
 - Swapping between different themes (e.g. Landscapes, objects, Halloween).
