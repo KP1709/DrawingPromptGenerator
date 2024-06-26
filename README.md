@@ -26,6 +26,7 @@ The repo contains two folders 'netlify/functions' and '/functions'.
 - The photographer's image is displayed on the card with alt text added to the image.
 - Users can view the photographer's Pexel account.
 - The API keys are hidden correctly using the .env file and added to the .gitignore file. 
+- Application fails correctly - considers the sad path.
 
 ## 🎨 Design + Functionality
 The design and functionality were inspired by a similar project on Frontend Mentor (Advice Generator App). The design was adapted to suit the addition of other elements such as the photo, photographer's name and link to their account. 
