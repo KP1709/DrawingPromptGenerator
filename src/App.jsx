@@ -4,7 +4,23 @@ import { faDiceFive } from "@fortawesome/free-solid-svg-icons/faDiceFive";
 
 export default function App() {
     const [prompts, setPrompts] = React.useState([])
-    
+    const [databaseLoaded, setDatabaseLoaded] = React.useState(false)
+
+    React.useEffect(() => {
+        try {
+            async function getPrompt() {
+                const res = await fetch("/.netlify/functions/supabase")
+                const data = await res.json()
+                setDatabaseLoaded(true)
+                setPrompts(data.data)
+            }
+            getPrompt()
+        }
+        catch (err) {
+            setDatabaseLoaded(false)
+        }
+    }, [])
+
     const [selectedPrompt, setSelectedPrompt] = React.useState({
         id: 27,
         promptText: "Overgrown Ruins",
@@ -13,15 +29,6 @@ export default function App() {
         photographer: "Yusron El Jihan",
         photographerURL: "https://www.pexels.com/@yusronell/"
     })
-
-    React.useEffect(() => {
-        async function getPrompt() {
-            const res = await fetch("/.netlify/functions/supabase")
-            const data = await res.json()
-            setPrompts(data.data)
-        }
-        getPrompt()
-    }, [])
 
     function getRandomPrompt() {
         let value = Math.ceil(Math.random() * prompts.length - 1);
@@ -46,6 +53,8 @@ export default function App() {
                 <a href={selectedPrompt.photographerURL}>View {selectedPrompt.photographer}'s profile here</a>
                 <button onClick={getRandomPrompt} aria-label="Generate new prompt"><FontAwesomeIcon icon={faDiceFive} /></button>
             </div>
+
+            {databaseLoaded === false ? console.log("Unable to connect") : console.log("Connected")}
 
         </main>
     )
