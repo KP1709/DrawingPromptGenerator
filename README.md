@@ -4,7 +4,7 @@
 
 
 ## ⌨️ Technology + Asset stack
-HTML / CSS / npm / Node.js / Vite / Font Awesome / Supabase (PostgreSQL) / Pexel / Netlify CLI 
+HTML / CSS / npm / Node.js / Vite / Font Awesome / Supabase (PostgreSQL) / Pexel / Netlify CLI / React
 
 ## 🍼 Introduction
 While continuing to learn React through Bob Ziroll's Learn React course (Scrimba), I wanted to practice and experiment with APIs. This application is a twist on a project on Frontend Mentor. Essentially, the web application displays random drawing prompts to users and outputs an image associated with the word so users gain inspiration. In addition, information about the photographer is displayed giving credit to each image. The API used is custom as I created it using Supabase.
