@@ -1,12 +1,12 @@
-import React from "react"
+import { useState, useEffect } from "react"
 import UnableToConnect from "./reusableFunctions/UnableToConnect";
 import Card from "./component/card"
 
 export default function App() {
-    const [prompts, setPrompts] = React.useState([])
-    const [databaseLoaded, setDatabaseLoaded] = React.useState(false)
+    const [prompts, setPrompts] = useState([])
+    const [databaseLoaded, setDatabaseLoaded] = useState(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         async function getPrompt() {
             setDatabaseLoaded(false)
             try {
@@ -22,7 +22,7 @@ export default function App() {
         getPrompt()
     }, [])
 
-    const [selectedPrompt, setSelectedPrompt] = React.useState({
+    const [selectedPrompt, setSelectedPrompt] = useState({
         id: 27,
         promptText: "Overgrown Ruins",
         photoURL: "https://images.pexels.com/photos/13074007/pexels-photo-13074007.jpeg",
@@ -44,14 +44,16 @@ export default function App() {
                 photographerURL: prompts[value].photographerURL
             }))
         }
-        else if (databaseLoaded === false) {
-            UnableToConnect()
-        }
+        else UnableToConnect()
+        
     }
 
     return (
         <main>
-            <Card key={selectedPrompt.id} selectedPrompt={selectedPrompt} getRandomPrompt={getRandomPrompt}/>
+            <Card
+                key={selectedPrompt.id}
+                selectedPrompt={selectedPrompt}
+                getRandomPrompt={getRandomPrompt} />
         </main>
     )
 }
