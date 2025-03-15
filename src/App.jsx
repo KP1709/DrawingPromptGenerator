@@ -12,8 +12,14 @@ export default function App() {
             try {
                 const res = await fetch("/.netlify/functions/supabase")
                 const data = await res.json()
-                setPrompts(data.data)
-                setDatabaseLoaded(true)
+                if (data.data === null) {
+                    setDatabaseLoaded(false)
+                    return UnableToConnect()
+                }
+                else {
+                    setPrompts(data.data)
+                    setDatabaseLoaded(true)
+                }
             }
             catch (err) {
                 UnableToConnect()
@@ -45,7 +51,7 @@ export default function App() {
             }))
         }
         else UnableToConnect()
-        
+
     }
 
     return (
