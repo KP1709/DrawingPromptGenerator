@@ -1,57 +1,53 @@
 import { useState, useEffect } from "react"
+import { createClient } from "@supabase/supabase-js";
 import UnableToConnect from "./reusableFunctions/UnableToConnect";
 import Card from "./component/card"
 
+const supabaseUrl = import.meta.env.VITE_SUPABASE_DATABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+
 export default function App() {
-    const [prompts, setPrompts] = useState([])
-    const [databaseLoaded, setDatabaseLoaded] = useState(false)
+    const [promptLoaded, setPromptLoaded] = useState(false)
+    const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * (30 - 1 + 1) + 1))
+    const [selectedPrompt, setSelectedPrompt] = useState({
+        id: randomNumber,
+        promptText: "",
+        photoURL: "",
+        photoAlt: "",
+        photographer: "",
+        photographerURL: ""
+    })
 
     useEffect(() => {
         async function getPrompt() {
-            setDatabaseLoaded(false)
+            setPromptLoaded(false)
             try {
-                const res = await fetch("/.netlify/functions/supabase")
-                const data = await res.json()
-                if (data.data === null) {
-                    setDatabaseLoaded(false)
-                    return UnableToConnect()
-                }
-                else {
-                    setPrompts(data.data)
-                    setDatabaseLoaded(true)
-                }
+                const { data } = await supabase.from("DrawingPrompts").select('*').eq('id', randomNumber);
+                setSelectedPrompt(prevData => ({
+                    ...prevData,
+                    id: randomNumber,
+                    promptText: data[0].promptText,
+                    photoURL: data[0].photoURL,
+                    photoAlt: data[0].photoAlt,
+                    photographer: data[0].photographer,
+                    photographerURL: data[0].photographerURL
+                }))
+                setPromptLoaded(true)
             }
             catch (err) {
                 UnableToConnect()
             }
         }
         getPrompt()
-    }, [])
-
-    const [selectedPrompt, setSelectedPrompt] = useState({
-        id: 27,
-        promptText: "Overgrown Ruins",
-        photoURL: "https://images.pexels.com/photos/13074007/pexels-photo-13074007.jpeg",
-        photoAlt: "Ruins of a Castle in a Jungle Overgrown with Bushes",
-        photographer: "Yusron El Jihan",
-        photographerURL: "https://www.pexels.com/@yusronell/"
-    })
+    }, [randomNumber])
 
     function getRandomPrompt() {
-        if (databaseLoaded) {
-            let value = Math.ceil(Math.random() * prompts.length - 1);
-            setSelectedPrompt(prevData => ({
-                ...prevData,
-                id: value,
-                promptText: prompts[value].promptText,
-                photoURL: prompts[value].photoURL,
-                photoAlt: prompts[value].photoAlt,
-                photographer: prompts[value].photographer,
-                photographerURL: prompts[value].photographerURL
-            }))
-        }
-        else UnableToConnect()
+        if (promptLoaded) {
+            setRandomNumber(Math.floor(Math.random() * (30 - 1 + 1) + 1))
 
+        }
     }
 
     return (
@@ -59,7 +55,8 @@ export default function App() {
             <Card
                 key={selectedPrompt.id}
                 selectedPrompt={selectedPrompt}
-                getRandomPrompt={getRandomPrompt} />
+                getRandomPrompt={getRandomPrompt}
+            />
         </main>
     )
 }
