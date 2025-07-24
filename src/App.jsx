@@ -25,6 +25,11 @@ export default function App() {
             setPromptLoaded(false)
             try {
                 const { data } = await supabase.from("DrawingPrompts").select('*').eq('id', randomNumber);
+
+                if (data.length === 0) {
+                    throw Error
+                }
+
                 setSelectedPrompt(prevData => ({
                     ...prevData,
                     id: randomNumber,
