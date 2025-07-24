@@ -49,19 +49,35 @@ export default function App() {
     }, [randomNumber])
 
     function getRandomPrompt() {
-        if (promptLoaded) {
-            setRandomNumber(Math.floor(Math.random() * (30 - 1 + 1) + 1))
+        setRandomNumber(Math.floor(Math.random() * (30 - 1 + 1) + 1))
+    }
+
+    function MainDisplay() {
+        const [showRetry, setShowRetry] = useState(false)
+        if (promptLoaded && !showRetry) {
+            return <Card
+                key={selectedPrompt.id}
+                selectedPrompt={selectedPrompt}
+                getRandomPrompt={getRandomPrompt}
+            />
+        }
+
+        else {
+            setTimeout(() => {
+                setShowRetry(true)
+            }, 1000)
+
+            return showRetry && <>
+                <p>Unable to load prompt</p>
+                <button className='retry' onClick={getRandomPrompt}>Retry</button>
+            </>
 
         }
     }
 
     return (
         <main>
-            <Card
-                key={selectedPrompt.id}
-                selectedPrompt={selectedPrompt}
-                getRandomPrompt={getRandomPrompt}
-            />
+            <MainDisplay />
         </main>
     )
 }
