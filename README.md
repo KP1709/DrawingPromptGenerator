@@ -2,6 +2,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/739de898-9f03-4a36-aa2a-f7843daed5bf/deploy-status)](https://app.netlify.com/sites/kareenapatel-drawingpromptgenerator/deploys)
 ![Static Badge](https://img.shields.io/badge/supabase-paused-lightgray)
 
+![image](Images/ThumbnailDrawingPromptGenerator.png)
 
 ## ⌨️ Technology + Asset stack
 HTML / CSS / npm / Node.js / Vite / Font Awesome / Supabase (PostgreSQL) / Pexel / React / Cypress (testing)
