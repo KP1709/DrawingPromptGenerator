@@ -24,4 +24,16 @@ describe('Main page tests', () => {
     cy.wait(1000)
     cy.getDataTest('new-prompt-button').click()
   })
+
+  it('Fail getting initial prompt', () => {
+    cy.intercept('GET', `https://whaftqpyevfgxqxdfixi.supabase.co/rest/v1/DrawingPrompts*`, {
+      forceNetworkError: true
+    }).as('getDrawingPrompts');
+    cy.visit('/');
+    cy.wait('@getDrawingPrompts');
+
+    cy.getDataTest('retry-button').should('exist');
+    cy.getDataTest('retry-button').click();
+  });
+
 })

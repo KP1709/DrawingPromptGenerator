@@ -69,7 +69,7 @@ export default function App() {
 
             return showRetry && <>
                 <p>Unable to load prompt</p>
-                <button className='retry' onClick={getRandomPrompt}>Retry</button>
+                <button className='retry' onClick={getRandomPrompt} data-test="retry-button">Retry</button>
             </>
 
         }
