@@ -25,6 +25,7 @@ describe('Main page tests', () => {
     cy.getDataTest('new-prompt-button').click()
   })
 
+  // This will fail if data is loaded from local file
   it('Fail getting initial prompt', () => {
     cy.intercept('GET', `https://whaftqpyevfgxqxdfixi.supabase.co/rest/v1/DrawingPrompts*`, {
       forceNetworkError: true
