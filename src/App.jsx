@@ -9,7 +9,7 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function App() {
-    const [isLocalData,] = useState(false) // Change here to use local data
+    const [isLocalData,] = useState(true) // Change here to use local data or database data
     const [promptLoaded, setPromptLoaded] = useState(false)
     const [numberOfPrompts, setNumberOfPrompts] = useState(0)
     const [randomNumber, setRandomNumber] = useState(0)
